@@ -47,6 +47,21 @@ Signature: split(separator:Regex,limit=nil,*,remove_empty=false)-instance-method
 Signature: split(separator:Regex,limit=nil,*,remove_empty=false,&block:String->_)-instance-method
 ```
 
+### All options
+
+```
+$ crydoc -h
+usage: crydoc [-h] [--module MODULE] [--type TYPE] [--method METHOD] [--html]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --module MODULE, -m MODULE
+                        search a module name
+  --type TYPE, -t TYPE  search a type (class)
+  --method METHOD, -f METHOD
+                        search a method
+  --html                Open the URL in default browser
+```
 
 ### TODO
 - Distribute on pypi
