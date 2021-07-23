@@ -1,5 +1,5 @@
 # crydoc
-CLI doc for Crystal lang
+CLI doc for [Crystal lang](https://crystal-lang.org/api/1.1.0/index.html)
 
 ## Usage
 
