@@ -1,43 +1,54 @@
 # crydoc
-CLI doc for [Crystal lang](https://crystal-lang.org/api/1.1.0/index.html)
+CLI doc for [Crystal lang](https://crystal-lang.org/api/1.1.0/index.html) standard libraries.
+
+## Install
+Requires python3.6+
+
+```
+sudo curl -Lo /usr/local/bin/crydoc https://raw.githubusercontent.com/hvnsweeting/crydoc/main/crydoc.py
+sudo chmod a+x /usr/local/bin/crydoc
+```
 
 ## Usage
+
+Add `--html` to open doc site on default browser.
 
 ### List modules
 ```
 python3 crydoc.py
 ```
-### Display module methods
+### Display module doc
 
 ```
 python3 crydoc.py --module json
 python3 crydoc.py -m string
 ```
 
-### Examples
+### Open HTML doc page of HTTP::Client::Response class
+
 
 ```
-$ python3 crydoc.py -m string | head -n20
-Signature: from_utf16(pointer:Pointer(UInt16)):Tuple(String,Pointer(UInt16))-class-method
-   Decodes the given *slice* UTF-16 sequence into a String and returns the
-pointer after reading. The string ends when a zero value is found.
+$ python3 crydoc.py --html -t HTTP::Client::Response
+HTTP::Client::Response of HTTP::Client
+HTTP::Client::Response https://crystal-lang.org/api/1.1.0/HTTP/Client/Response.html
+Opening https://crystal-lang.org/api/1.1.0/HTTP/Client/Response.html
+```
 
-slice = Slice[104_u16, 105_u16, 0_u16, 55296_u16, 56485_u16, 0_u16]
-String.from_utf16(slice) # => "hi\0000𐂥"
-pointer = slice.to_unsafe
-string, pointer = String.from_utf16(pointer) # => "hi"
-string, pointer = String.from_utf16(pointer) # => "𐂥"
-
-Invalid values are encoded using the unicode replacement char with
-codepoint `0xfffd`.
-==============================
-
-Signature: %(other):String-instance-method
-   Interpolates *other* into the string using top-level `::sprintf`.
+### Find methods split
+```
+$ python3 crydoc.py -f String::split  | grep Signature
+Signature: split(limit:Int32?=nil):Array(String)-instance-method
+Signature: split(limit:Int32?=nil,&block:String->_)-instance-method
+Signature: split(separator:Char,limit=nil,*,remove_empty=false)-instance-method
+Signature: split(separator:Char,limit=nil,*,remove_empty=false,&block:String->_)-instance-method
+Signature: split(separator:String,limit=nil,*,remove_empty=false)-instance-method
+Signature: split(separator:String,limit=nil,*,remove_empty=false,&block:String->_)-instance-method
+Signature: split(separator:Regex,limit=nil,*,remove_empty=false)-instance-method
+Signature: split(separator:Regex,limit=nil,*,remove_empty=false,&block:String->_)-instance-method
 ```
 
 
 ### TODO
-- Show doc for a given method
+- Distribute on pypi
 - Better align
 - Rewrite in Crystal
